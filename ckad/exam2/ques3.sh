@@ -5,6 +5,7 @@ kubectl label node controlplane app_type=beta
 
 cat <<EOF > /root/ques3.yaml
 ---
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   creationTimestamp: null
@@ -37,4 +38,8 @@ spec:
 EOF
 
 kubectl create -f /root/ques3.yaml
+
+sleep 1
+
+kubectl get po -owide
 
