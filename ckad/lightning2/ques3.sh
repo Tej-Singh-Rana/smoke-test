@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat <<EOF > /root/ques3.yaml
 ---
 apiVersion: v1
 kind: Pod
@@ -29,3 +32,9 @@ spec:
     - name: secret-volume
       readOnly: true
       mountPath: "/etc/secret-volume"
+
+EOF
+
+
+kubectl replace -f /root/ques3.yaml --force
+
