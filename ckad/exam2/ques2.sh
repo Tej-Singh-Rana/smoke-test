@@ -26,3 +26,8 @@ EOF
 
 kubectl apply -f /root/ques2.yaml
 
+sleep 1 
+
+
+kubectl get po -owide
+
