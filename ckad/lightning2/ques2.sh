@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat <<EOF > /root/ques2.yaml
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -16,6 +19,9 @@ spec:
           - name: dice
             image: kodekloud/throw-dice
           restartPolicy: Never
-          
-          
+
+EOF
+
+kubectl create -f /root/ques2.yaml
+
           
