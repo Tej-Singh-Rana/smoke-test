@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cat <<EOF > /root/ques1-pv.yaml
+---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -16,6 +17,7 @@ spec:
 
 EOF
 
+
 cat <<EOF > /root/ques1-pvc.yaml
 ---
 apiVersion: v1
@@ -30,7 +32,7 @@ spec:
       storage: 200Mi
   storageClassName: manual
   
-  EOF
+EOF
   
 cat <<EOF > /root/ques1-pod.yaml
 ---
