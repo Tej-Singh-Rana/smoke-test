@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat <<EOF > /root/ques1.yaml
 ---
 apiVersion: v1
 kind: Pod
@@ -26,4 +29,9 @@ spec:
       initialDelaySeconds: 10
       periodSeconds: 60
       
-      
+EOF
+
+
+kubectl replace -f /root/ques1.yaml --force
+
+
