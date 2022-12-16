@@ -1,3 +1,5 @@
 #!/bin/bash
 
 
+kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}' > /root/CKA/node_ips
+
