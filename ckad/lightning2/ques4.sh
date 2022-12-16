@@ -1,3 +1,6 @@
+#!/bin/bash
+
+cat <<EOF > /root/ques4.yaml
 ---
 kind: Ingress
 apiVersion: networking.k8s.io/v1
@@ -27,3 +30,8 @@ spec:
             name: apparels-service
             port:
               number: 8080
+
+EOF
+
+kubectl apply -f /root/ques4.yaml
+
