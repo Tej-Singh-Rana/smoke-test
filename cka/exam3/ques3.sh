@@ -1,12 +1,11 @@
 #!/bin/bash
 
-
 cat <<EOF > /root/ques3.yaml
----
+
 apiVersion: v1
 kind: Pod
 metadata:
-  name: multi-pod
+    name: multi-pod
 spec:
   containers:
   - image: nginx
@@ -20,9 +19,11 @@ spec:
     env:
     - name: name
       value: beta
+EOF
 
-EOF  
 
 
 kubectl apply -f /root/ques3.yaml
+
+kubectl get po multi-pod
 
