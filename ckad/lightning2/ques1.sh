@@ -34,4 +34,6 @@ EOF
 
 kubectl replace -f /root/ques1.yaml --force
 
+kubectl get po -n dev1401 
+
 
