@@ -24,4 +24,6 @@ EOF
 
 kubectl create -f /root/ques2.yaml
 
-          
+kubectl get cj,po
+
+
