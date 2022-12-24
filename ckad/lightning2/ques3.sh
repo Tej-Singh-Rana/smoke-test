@@ -38,3 +38,5 @@ EOF
 
 kubectl replace -f /root/ques3.yaml --force
 
+kubectl get po -n dev2406
+
