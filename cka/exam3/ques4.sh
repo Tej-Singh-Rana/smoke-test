@@ -19,7 +19,7 @@ EOF
 
 kubectl apply -f /root/ques4.yaml
 
-sleep 2
+sleep 8
 
 kubectl exec -it non-root-pod -- id
 
