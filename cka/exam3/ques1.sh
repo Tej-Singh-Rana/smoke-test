@@ -26,3 +26,7 @@ EOF
 
 kubectl apply -f /root/ques1.yaml 
 
+echo "Status of the created pod and serviceaccount"
+
+kubectl get po,sa
+
