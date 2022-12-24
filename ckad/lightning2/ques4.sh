@@ -35,3 +35,9 @@ EOF
 
 kubectl apply -f /root/ques4.yaml
 
+echo " "
+
+kubectl get ing
+
+
+
