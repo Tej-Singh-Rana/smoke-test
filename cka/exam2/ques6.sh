@@ -1,22 +1,22 @@
 #!/bin/bash
 
-cat <<EOF > /root/ques6-csr.yaml
----
-apiVersion: certificates.k8s.io/v1
-kind: CertificateSigningRequest
-metadata:
-  name: john-developer
-spec:
-  signerName: kubernetes.io/kube-apiserver-client
-  request: $(cat /root/CKA/john.csr)
-  usages:
-  - digital signature
-  - key encipherment
-  - client auth
+# cat <<EOF > /root/ques6-csr.yaml
+# ---
+# apiVersion: certificates.k8s.io/v1
+# kind: CertificateSigningRequest
+# metadata:
+#   name: john-developer
+# spec:
+#   signerName: kubernetes.io/kube-apiserver-client
+#   request: $(cat /root/CKA/john.csr)
+#   usages:
+#   - digital signature
+#   - key encipherment
+#   - client auth
 
-EOF
+# EOF
 
-kubectl apply -f /root/ques6-csr.yaml
+# kubectl apply -f /root/ques6-csr.yaml
 
 echo "Approving the certificate"
 kubectl certificate approve john-developer
