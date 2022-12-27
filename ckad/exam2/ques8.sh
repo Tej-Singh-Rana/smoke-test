@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat << EOF > /root/ques8.yaml
+cat <<EOF > /root/ques8.yaml
 ---
 apiVersion: v1
 kind: Pod
@@ -22,8 +22,6 @@ spec:
     env:
      - name: type
        value: moon
-       
-EOF  
+EOF
 
 kubectl apply -f /root/ques8.yaml
-
