@@ -27,3 +27,7 @@ EOF
 
 kubectl apply -f /root/ques2-netpol.yaml
 
+
+kubectl get po,netpol -n apps-xyz
+
+
