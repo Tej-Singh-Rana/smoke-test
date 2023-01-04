@@ -29,4 +29,6 @@ EOF
 
 kubectl apply -f /root/ques1-netpol.yaml
 
+kubectl get po,netpol -n prod-x12cs
+
 
