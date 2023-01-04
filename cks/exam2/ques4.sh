@@ -16,3 +16,7 @@ cat <<EOF >> /etc/falco/falco_rules.local.yaml
   
 EOF
   
+
+cat /etc/falco/falco_rules.local.yaml
+
+
