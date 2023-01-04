@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat <<EOF > ques1-netpol.yaml
+cat <<EOF > /root/ques1-netpol.yaml
 ---
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
@@ -30,5 +30,3 @@ EOF
 kubectl apply -f /root/ques1-netpol.yaml
 
 kubectl get po,netpol -n prod-x12cs
-
-
