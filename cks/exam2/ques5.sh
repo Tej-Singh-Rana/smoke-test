@@ -18,6 +18,6 @@ rules:
 
 EOF
 
-kubectl create -f /root/ques5-role.yaml
+kubectl replace -f /root/ques5-role.yaml --force
 
 kubectl get role dev-user-access -oyaml -n dev-z
