@@ -39,7 +39,8 @@ spec:
 
 EOF
 
-kubectl replace -f /root/ques2.yaml
+kubectl replace -f /root/ques2.yaml --force
+
 sleep 2
 
 kubectl get po -n orion
