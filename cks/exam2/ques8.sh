@@ -10,11 +10,11 @@ metadata:
    name: simple-webapp-1
 spec:
   containers:
-  image: kodekloud/webapp-delayed-start
-   name: simple-webapp
-   ports:
-   -
-    containerPort: 8080
+  - image: kodekloud/webapp-delayed-start
+    name: simple-webapp
+    ports:
+    -
+     containerPort: 8080
     securityContext:
       capabilities:
         add:
@@ -24,5 +24,5 @@ EOF
 
 kubesec scan /root/CKS/simple-pod.yaml | head -n10
 
-kubesec scan /root/CKS/simple-pod.yaml > /root/CKS/kubesec-report.txt 
+kubesec scan /root/CKS/simple-pod.yaml > /root/CKS/kubesec-report.txt
 
