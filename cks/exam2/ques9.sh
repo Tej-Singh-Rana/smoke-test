@@ -16,7 +16,7 @@ echo "Image: gcr.io/google-containers/nginx"
 trivy image --severity=CRITICAL gcr.io/google-containers/nginx | grep -i total
 
 echo "Image: bitnami/nginx:latest" 
-trivy image --severity=CRITICAL bitnami/nginx:latest | grep -i total
+trivy image --severity=CRITICAL bitnami/jenkins:latest | grep -i total
 
 kubectl run secure-nginx-pod --image=gcr.io/google-containers/nginx -n seth
 
