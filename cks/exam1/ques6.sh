@@ -26,7 +26,7 @@ cat <<EOF > /etc/falco/falco_rules.local.yaml
      and not python_running_ms_oms
      and not user_known_write_below_binary_dir_activities
    output: >
-     File below a known binary directory opened for writing (user=%user.name file_updated=%fd.name command=%proc.cmdline)
+     File below a known binary directory opened for writing (user_id=%user.uid file_updated=%fd.name command=%proc.cmdline)
    priority: CRITICAL
    tags: [filesystem, mitre_persistence]
    
