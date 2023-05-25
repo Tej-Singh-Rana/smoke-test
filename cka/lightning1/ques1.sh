@@ -5,10 +5,10 @@ apt-mark unhold kubelet kubeadm kubectl
 
 kubectl drain controlplane --ignore-daemonsets
 apt update
-apt-get install kubeadm=1.25.0-00 -y 
-kubeadm upgrade plan v1.25.0
-kubeadm upgrade apply v1.25.0
-apt-get install kubelet=1.25.0-00 -y
+apt-get install kubeadm=1.27.0-00 -y 
+kubeadm upgrade plan v1.27.0
+kubeadm upgrade apply v1.27.0
+apt-get install kubelet=1.27.0-00 -y
 systemctl daemon-reload
 systemctl restart kubelet
 kubectl uncordon controlplane
@@ -35,9 +35,9 @@ apt-mark unhold kubelet kubeadm kubectl
 
 
 apt update
-apt-get install kubeadm=1.25.0-00 -y
+apt-get install kubeadm=1.27.0-00 -y
 kubeadm upgrade node
-apt-get install kubelet=1.25.0-00 -y 
+apt-get install kubelet=1.27.0-00 -y 
 systemctl daemon-reload
 systemctl restart kubelet
 
