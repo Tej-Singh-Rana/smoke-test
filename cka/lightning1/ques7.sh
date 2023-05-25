@@ -1,6 +1,7 @@
 #!/bin/bash
 
 cat <<EOF > /root/ques7.yaml
+
 ---
 apiVersion: v1
 kind: Pod
@@ -28,8 +29,6 @@ spec:
       readOnly: true
       mountPath: "/etc/secret-volume"
 
-EOF      
-
+EOF
 
 kubectl apply -f /root/ques7.yaml
-
