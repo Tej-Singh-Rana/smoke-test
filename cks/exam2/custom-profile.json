@@ -56,7 +56,9 @@
                 "set_tid_address",
                 "setitimer",
                 "write",
-                "read"
+                "read",
+                "fstatfs",
+                "getdents64"
             ],
             "action": "SCMP_ACT_ALLOW"
         }
