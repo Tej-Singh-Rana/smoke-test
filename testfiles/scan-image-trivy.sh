@@ -2,7 +2,7 @@
 
 # List of Docker images to scan
 IMAGES=(
-    "docker.io/kodekloud/webapp-delayed-start"
+    "docker.io/kodekloud/webapp-delayed-start:latest"
     "docker.io/library/httpd:2-alpine"
     "docker.io/library/nginx:1.16"
     "docker.io/library/httpd:2.4.33"
