@@ -1,22 +1,22 @@
 #!/bin/bash
 
 echo "Image: Rancher" 
-trivy image --severity=CRITICAL rancher/alpine-git:1.0.4 | grep -i total
+trivy image --severity=CRITICAL docker.io/rancher/alpine-git:1.0.4 | grep -i total
 
 echo "Image: nginx:1.19" 
-trivy image --severity=CRITICAL nginx:1.19 | grep -i total
+trivy image --severity=CRITICAL docker.io/library/nginx:1.19 | grep -i total
 
 echo "Image: nginx:1.17" 
-trivy image --severity=CRITICAL nginx:1.17 | grep -i total
+trivy image --severity=CRITICAL docker.io/library/nginx:1.17 | grep -i total
 
 echo "Image: nginx:1.20" 
-trivy image --severity=CRITICAL nginx:1.20 | grep -i total
+trivy image --severity=CRITICAL docker.io/library/nginx:1.20 | grep -i total
 
 echo "Image: gcr.io/google-containers/nginx" 
 trivy image --severity=CRITICAL gcr.io/google-containers/nginx | grep -i total
 
 echo "Image: bitnami/jenkins:2.414.3" 
-trivy image --severity=CRITICAL bitnami/jenkins:2.414.3 | grep -i total
+trivy image --severity=CRITICAL docker.io/bitnami/jenkins:2.414.3 | grep -i total
 
 kubectl run secure-nginx-pod --image=gcr.io/google-containers/nginx -n seth
 
