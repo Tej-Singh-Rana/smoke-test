@@ -7,16 +7,16 @@ echo "Pod name"
 kubectl -n delta get pods -o json | jq -r '.items[].metadata.name'
 
 
-trivy image --severity CRITICAL kodekloud/webapp-delayed-start | grep Total
+trivy image --severity CRITICAL docker.io/kodekloud/webapp-delayed-start:latest | grep Total
 echo " "
 
-trivy image --severity CRITICAL httpd:2-alpine | grep Total
+trivy image --severity CRITICAL docker.io/library/httpd:2-alpine | grep Total
 echo " "
 
-trivy image --severity CRITICAL nginx:1.16 | grep Total
+trivy image --severity CRITICAL docker.io/library/nginx:1.16 | grep Total
 echo " "
 
-trivy image --severity CRITICAL httpd:2.4.33 | grep Total
+trivy image --severity CRITICAL docker.io/library/httpd:2.4.33 | grep Total
 echo " "
 
 echo "Deleting critical pods" 
