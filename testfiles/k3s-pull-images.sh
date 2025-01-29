@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# List of Docker images (duplicates removed)
+# List of Docker images
 images=(
   "alpine:latest"
   "ubuntu:latest"
