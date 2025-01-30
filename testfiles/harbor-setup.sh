@@ -8,10 +8,24 @@ tar xvzf harbor-offline-installer-v2.12.2.tgz
 apt update
 apt install -y docker-ce
 
+# Mirror docker registry
+cat <<EOF | sudo tee /etc/docker/daemon.json
+{
+  "exec-opts": [
+    "native.cgroupdriver=cgroupfs"
+  ],
+  "bip":"172.12.0.1/24",
+  "registry-mirrors": [
+    "http://docker-registry-mirror.kodekloud.com"
+  ]
+}
+EOF
+
 # Enable and start Docker service
 systemctl enable --now docker 
 
 # Generate the Root CA certificate and private key
+openssl genrsa -out ca.key 4096
 openssl req -x509 -new -nodes -sha512 -days 3650 \
  -subj "/C=CN/ST=India/L=India/O=kodekloud/OU=Personal/CN=MyPersonal Root CA" \
  -key ca.key \
@@ -48,6 +62,7 @@ openssl x509 -req -sha512 -days 3650 \
     -out kodekloud.com.crt
 
 # Copy the certificate and key to the /data/cert/ directory
+mkdir -p /data/cert
 cp -v kodekloud.com.crt /data/cert/
 cp -v kodekloud.com.key /data/cert/
 
@@ -63,11 +78,11 @@ cp -v kodekloud.com.key /etc/docker/certs.d/kodekloud.com/
 cp -v ca.crt /etc/docker/certs.d/kodekloud.com/
 
 # Copy the CA certificate to the system's trusted CA directory
-cp ca.crt /usr/local/share/ca-certificates/
+cp -v ca.crt /usr/local/share/ca-certificates/
 
 # Update the system's CA certificates
 sudo update-ca-certificates
 
+echo "Use the custom harbor.yml file. Run the prepare script -> install.sh or docker compose up -d"
 echo "Update the mapping port in the docker-compose.yml file"
-echo "Run the prepare script -> install.sh or docker compose up -d"
-
+echo "sed -i 's/8080/8085/g' /root/harbor/docker-compose.yml"
