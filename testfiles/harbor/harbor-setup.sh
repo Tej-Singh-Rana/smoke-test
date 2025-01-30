@@ -6,7 +6,7 @@ tar xvzf harbor-offline-installer-v2.12.2.tgz
 
 # Update apt repositories and install Docker
 apt update
-apt install -y docker-ce
+dpkg -l | grep -i docker || apt install -y docker-ce
 
 # Mirror docker registry
 cat <<EOF | sudo tee /etc/docker/daemon.json
