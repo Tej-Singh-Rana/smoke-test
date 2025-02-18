@@ -190,5 +190,4 @@ helm search hub kubernetes-dashboard
 helm package /opt/webapp-color-apd/
 ls -l /root/
 
-
-
+echo "The script ran successfully!"
