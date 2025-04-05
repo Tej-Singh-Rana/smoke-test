@@ -2,36 +2,31 @@
 
 cat <<EOF > /root/ques9.yaml
 ---
-apiVersion: v1
-kind: Pod
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
 metadata:
-  name: orange
+  name: webapp-hpa
   namespace: default
 spec:
-  containers:
-  - command:
-    - sh
-    - -c
-    - echo The app is running! && sleep 3600
-    image: busybox:1.28
-    imagePullPolicy: IfNotPresent
-    name: orange-container
-    resources: {}
-  initContainers:
-  - command:
-    - sh
-    - -c
-    - sleep 2;
-    image: busybox
-    imagePullPolicy: Always
-    name: init-myservice
-
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: kkapp-deploy
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 50
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
 EOF
 
 
-kubectl replace -f /root/ques9.yaml --force
+kubectl get hpa 
 
-sleep 2
-
-kubectl get po orange 
 
