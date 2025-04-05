@@ -1,7 +1,20 @@
 #!/bin/bash
 
-kubectl create namespace hr
+kubectl delete pvc -n storage-ns app-pvc
 
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: app-pvc
+  namespace: storage-ns
+spec:
+  accessModes:
+    - ReadWriteOnce        
+  resources:
+EOF
 
-kubectl run hr-pod --image=redis:alpine --namespace=hr --labels=environment=production,tier=frontend
+kubectl get pvc app-pvc -n storage-ns
 
+kubectl get pv 
