@@ -13,6 +13,8 @@ spec:
   accessModes:
     - ReadWriteOnce        
   resources:
+    requests:
+      storage: 1Gi
 EOF
 
 kubectl get pvc app-pvc -n storage-ns
