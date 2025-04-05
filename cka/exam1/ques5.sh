@@ -1,8 +1,6 @@
 #!/bin/bash
 
-kubectl expose pod messaging --port=6379 --name messaging-service
+kubectl create deployment hr-web-app --image=kodekloud/webapp-color --replicas=2
 
-sleep 2
 
-kubectl get po,svc 
-
+kubectl get deploy 
