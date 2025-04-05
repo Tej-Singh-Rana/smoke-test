@@ -1,25 +1,30 @@
 #!/bin/bash
 
+kubectl delete pod lp-pod -n low-priority --force
 
-cat <<EOF > /root/ques4.yaml
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata:
+  name: low-priority
+value: 50000
+globalDefault: false
+description: "Low priority class"image: redis:alpine
+EOF
+
+cat <<EOF | kubectl apply -f -
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: non-root-pod
+  name: lp-pod
+  namespace: low-priority
 spec:
-  securityContext:
-    runAsUser: 1000
-    fsGroup: 2000
+  priorityClassName: low-priority
   containers:
-  - name: non-root-pod
-    image: redis:alpine
-
+  - name: nginx
+    image: nginx
 EOF
 
-kubectl apply -f /root/ques4.yaml
-
-sleep 8
-
-kubectl exec -it non-root-pod -- id
-
+kubectl get po,pc -n low-priority
