@@ -1,6 +1,27 @@
 #!/bin/bash
 
-kubectl run --restart=Never --image=busybox static-busybox --dry-run=client -oyaml --command -- sleep 1000 > /etc/kubernetes/manifests/static-busybox.yaml
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hr-web-app
+  name: hr-web-app-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    nodePort: 30082
+  selector:
+    app: hr-web-app
+EOF
 
-kubectl get po 
+sleep 2
+
+kubectl get svc,ep,po,deploy -l app=hr-web-app
+
 
