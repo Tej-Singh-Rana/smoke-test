@@ -22,7 +22,7 @@ spec:
 
     - name: mc-pod-2
       image: busybox:1
-      command: ["sh", "-c", "while true; do date '+%Y-%m-%d %H:%M:%S' >> /var/log/shared/date.log; sleep 1; done"]
+      command: ["sh", "-c", "while true; do date >> /var/log/shared/date.log; sleep 1; done"]
       volumeMounts:
         - mountPath: /var/log/shared
           name: shared-volume
