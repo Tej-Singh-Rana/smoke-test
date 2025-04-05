@@ -1,29 +1,8 @@
 #!/bin/bash
 
-cat <<EOF > /root/ques3.yaml
+kubectl create configmap app-config -n cm-namespace \
+  --from-literal=ENV=production \
+  --from-literal=LOG_LEVEL=info
 
-apiVersion: v1
-kind: Pod
-metadata:
-    name: multi-pod
-spec:
-  containers:
-  - image: nginx
-    name: alpha
-    env:
-    - name: name
-      value: alpha
-  - image: busybox
-    name: beta
-    command: ["sleep", "4800"]
-    env:
-    - name: name
-      value: beta
-EOF
-
-
-
-kubectl apply -f /root/ques3.yaml
-
-kubectl get po multi-pod
-
+kubectl set env deployment/cm-webapp -n cm-namespace \
+  --from=configmap/app-config
