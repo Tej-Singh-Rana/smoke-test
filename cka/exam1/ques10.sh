@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cat <<EOF > /root/ques10.yaml
----
 kubectl create -n default -f - <<EOF
 apiVersion: autoscaling.k8s.io/v1
 kind: VerticalPodAutoscaler
