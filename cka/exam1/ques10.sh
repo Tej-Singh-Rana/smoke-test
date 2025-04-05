@@ -2,30 +2,19 @@
 
 cat <<EOF > /root/ques10.yaml
 ---
-apiVersion: v1
-kind: Service
+kubectl create -n default -f - <<EOF
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
 metadata:
-  creationTimestamp: null
-  labels:
-    app: hr-web-app
-  name: hr-web-app-service
+  name: analytics-vpa
+  namespace: default
 spec:
-  type: NodePort
-  ports:
-  - port: 8080
-    protocol: TCP
-    targetPort: 8080
-    nodePort: 30082
-  selector:
-    app: hr-web-app
-
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: analytics-deployment
+  updatePolicy:
+    updateMode: "Auto"
 EOF
 
-sleep 2
-
-kubectl apply -f /root/ques10.yaml
-
-sleep 2
-
-kubectl get svc,ep,po,deploy -l app=hr-web-app
-
+kubectl get vpa
