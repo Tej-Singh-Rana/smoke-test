@@ -26,7 +26,6 @@ spec:
       stabilizationWindowSeconds: 300
 EOF
 
+kubectl apply -f /root/ques9.yaml
 
 kubectl get hpa 
-
-
