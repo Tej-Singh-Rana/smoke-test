@@ -1,10 +1,18 @@
 #!/bin/bash
 
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: web-gateway
+  namespace: nginx-gateway
+spec:
+  gatewayClassName: nginx
+  listeners:
+    - name: http
+      protocol: HTTP
+      port: 80
+EOF
 
-kubectl get nodes -o jsonpath='{.items[*].status.nodeInfo.osImage}' > /opt/outputs/nodes_os_x43kj56.txt
-
-sleep 2
-
-cat /opt/outputs/nodes_os_x43kj56.txt
-
-
+kubectl get gateway -A
