@@ -1,8 +1,3 @@
 #!/bin/bash
 
-kubectl create namespace apx-x9984574
-
-sleep 2
-
-kubectl get ns
-
+kubectl get crds -A | grep -i vertical | awk '{print $1}' > /root/vpa-crds.txt
