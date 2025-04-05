@@ -1,8 +1,7 @@
 #!/bin/bash
 
-kubectl get nodes -o json > /opt/outputs/nodes-z3444kd9.json
+kubectl expose pod messaging --name=messaging-service --port=6379 --target-port=6379 --type=ClusterIP
 
+sleep 2
 
-cat  /opt/outputs/nodes-z3444kd9.json
-
-
+kubectl get po,svc 
