@@ -10,7 +10,7 @@ metadata:
   name: low-priority
 value: 50000
 globalDefault: false
-description: "Low priority class"image: redis:alpine
+description: "Low priority class"
 EOF
 
 cat <<EOF | kubectl apply -f -
