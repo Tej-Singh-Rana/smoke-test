@@ -1,9 +1,14 @@
 #!/bin/bash
 
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: rancher-sc
+provisioner: rancher.io/local-path
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+EOF
 
-kubectl get nodes -o jsonpath='{.items[*].status.addresses[?(@.type=="InternalIP")].address}' > /root/CKA/node_ips
-
-echo "Content of the node_ips file"
-
-cat /root/CKA/node_ips
-
+kubectl get sc 
