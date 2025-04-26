@@ -91,4 +91,9 @@ echo "#######################"
 echo "To print the token to join the worker node: kubeadm token create --print-join-command"
 echo "#######################"
 
+# To start using your cluster, you need to run the following as a regular user:
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
 kubectl apply -f https://raw.githubusercontent.com/Tej-Singh-Rana/k8s-test/refs/heads/master/custom-kube-flannel.yaml
