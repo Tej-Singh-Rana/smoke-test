@@ -41,6 +41,7 @@ echo "Setting up kubectl aliases and completion..."
   echo 'complete -F __start_kubectl k'
   echo 'source <(kubectl completion bash)'
   echo 'source /etc/profile.d/bash_completion.sh'
+  echo "alias crictl='k3s crictl'" 
 } >> /root/.bashrc
 
 {
