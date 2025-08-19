@@ -12,7 +12,7 @@ variable "region" {
 variable "bucket_name" {
   description = "Globally unique bucket name"
   type        = string
-  default     = "my-unique-bucket-123456" # Replace with a truly unique name
+  default     = "my-unique-bucket-kk-456" # Replace with a truly unique name
 }
 
 variable "storage_class" {
