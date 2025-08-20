@@ -6,6 +6,7 @@ provider "google" {
 resource "google_storage_bucket" "static_site" {
   name     = "${var.project_id}-cdn-bucket"
   location = var.region
+  uniform_bucket_level_access = true
   website {
     main_page_suffix = "index.html"
   }
