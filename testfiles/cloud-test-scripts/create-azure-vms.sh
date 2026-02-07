@@ -1,8 +1,26 @@
 #!/bin/bash
 
+resource_group=$(az group list --query "[0].name" -o tsv)
+
+# Regions
+regions=(
+  "westus"
+  "eastus"
+  "centralus"
+  "southcentralus"
+)
+
+# VM Sizes
+vm_sizes=(
+  "Standard_D2s_v3"
+  "Standard_B2s"
+  "Standard_B1s"
+  "Standard_DS1_v2"
+)
+
 for i in {1..8}; do
   az vm create \
-    --resource-group kml_rg_dev-139f9ad3abe04f88 \
+    --resource-group "$resource_group" \
     --name myvm$i \
     --image Ubuntu2204 \
     --size Standard_B2s \
@@ -11,18 +29,6 @@ for i in {1..8}; do
     --admin-username azureuser \
     --generate-ssh-keys
 done
-
-
-echo "Successfully created 8 Azure VMs."
-
-resource_group=$(az group list --query "[0].name" -o tsv)
-
-regions=(
-  "westus"
-  "eastus"
-  "centralus"
-  "southcentralus"
-)
 
 for region in "${regions[@]}"; do
   echo "Creating VMs in region: $region ..."
@@ -43,3 +49,26 @@ for region in "${regions[@]}"; do
   done
 done
 
+for region in "${regions[@]}"; do
+  echo "Creating VMs in region: $region ..."
+  
+  for size in "${vm_sizes[@]}"; do
+    for i in {1..8}; do
+      vm_name="vm-${region}-${size//_/}-${i}"
+      echo "  -> Creating VM: $vm_name (Size: $size)"
+
+      az vm create \
+        --resource-group "$resource_group" \
+        --name "$vm_name" \
+        --location "$region" \
+        --image Ubuntu2204 \
+        --size "$size" \
+        --os-disk-size-gb 128 \
+        --storage-sku Standard_LRS \
+        --admin-username azureuser \
+        --generate-ssh-keys
+    done
+  done
+done
+
+echo "VM creation completed successfully."
